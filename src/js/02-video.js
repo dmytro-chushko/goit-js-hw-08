@@ -12,4 +12,6 @@ const onTimeupdate = seconds => {
 };
 
 player.on('timeupdate', throttle(({ seconds }) => { onTimeupdate(seconds) }, 1000));
-player.setCurrentTime(currentTime);
+if (currentTime) {
+  player.setCurrentTime(currentTime);
+}
