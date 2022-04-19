@@ -1,14 +1,16 @@
 const throttle = require('lodash.throttle');
 const form = document.querySelector('.feedback-form');
-const feedbackValues = {};
 const storageFeedbackValues = () => localStorage.getItem('feedback');
+const feedbackValues = storageFeedbackValues() ? JSON.parse(storageFeedbackValues()) : {};
 
 function takeFormValues(target) {
-  if (target.name === 'email') {
-    feedbackValues.email = target.value;
-  }
-  if (target.name === 'message') {
-    feedbackValues.message = target.value;
+  switch (target.name) {
+    case 'email':
+      feedbackValues.email = target.value;
+      break;
+    
+    case 'message':
+      feedbackValues.message = target.value;
   }
   localStorage.setItem('feedback', JSON.stringify(feedbackValues));
 };
